@@ -1,8 +1,8 @@
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
 
 from .models import Department
 
 
-class DepartmentSerializer(serializers.ModelSerializer):
+class DepartmentSerializer(ModelSerializer):
     class Meta:
         model = Department
