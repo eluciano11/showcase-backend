@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from .models import Department
+from .serializers import DepartmentSerializer
+
+
+class DepartmentViewSet(viewsets.ModelViewSet):
+    model = Department
+    serializer_class = DepartmentSerializer
+    queryset = Department.objects.all()
