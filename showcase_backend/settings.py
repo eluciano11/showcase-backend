@@ -40,13 +40,13 @@ class Common(Configuration):
         # Third party
         'django_extensions',
         'rest_framework',
-	'django_gravatar',
-	
+        'django_gravatar',
 
-	'showcase_backend.projects',
-	'showcase_backend.users',
-	'showcase_backend.universities',
-	'showcase_backend.departments',
+
+        'showcase_backend.projects',
+        'showcase_backend.users',
+        'showcase_backend.universities',
+        'showcase_backend.departments',
     )
 
     MIDDLEWARE_CLASSES = (
