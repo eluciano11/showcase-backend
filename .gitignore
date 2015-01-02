@@ -99,3 +99,6 @@ venv
 
 #SQLite
 *.sqlite3
+
+# media
+media
