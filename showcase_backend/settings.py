@@ -37,7 +37,7 @@ class Common(Configuration):
 
         'django_extensions',
 	'rest_framework',
-	'django-gravatar',
+	'django_gravatar',
     )
 
     MIDDLEWARE_CLASSES = (
