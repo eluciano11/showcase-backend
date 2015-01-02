@@ -39,9 +39,14 @@ class Common(Configuration):
 
         # Third party
         'django_extensions',
+<<<<<<< HEAD
         'rest_framework',
 
         # Apps
+=======
+	'rest_framework',
+	'django-gravatar',
+>>>>>>> apps
     )
 
     MIDDLEWARE_CLASSES = (
