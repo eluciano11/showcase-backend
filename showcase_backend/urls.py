@@ -3,6 +3,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
+from router import get_api_urls
+
 
 urlpatterns = patterns(
     '',
@@ -20,7 +22,7 @@ urlpatterns = patterns(
     ),
     url(
         r'^api/',
-        include('showcase_backend.router')
+        include(get_api_urls())
     ),
 )
 

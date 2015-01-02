@@ -1,20 +1,22 @@
-from django.conf.urls import patterns, include
-from django.utils.module_loading import import_by_path
+from rest_framework.routers import SimpleRouter, DefaultRouter
+from django.conf import settings
 
 
-def get_api_urlpatterns(apps):
-    urls = []
+def get_api_urls():
+    from importlib import import_module
+    for app in settings.INSTALLED_APPS:
+        if app.startswith('showcase_backend'):
+            try:
+                import_module(app + '.urls')
+            except (ImportError, AttributeError):
+                pass
 
-    for app in apps:
-        dotted_path = 'showcase_backend.{}.urls.urlpatterns'.format(app)
-        urls.append((r'', include(import_by_path(dotted_path))))
-
-    return patterns('', *urls)
+    return SharedAPIRootRouter.shared_router.urls
 
 
-urlpatterns = get_api_urlpatterns([
-    # 'users',
-    'universities',
-    'departments',
-    # 'projects'
-])
+class SharedAPIRootRouter(SimpleRouter):
+    shared_router = DefaultRouter()
+
+    def register(self, *args, **kwargs):
+        self.shared_router.register(*args, **kwargs)
+        super(SharedAPIRootRouter, self).register(*args, **kwargs)
