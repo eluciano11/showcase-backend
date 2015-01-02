@@ -19,6 +19,8 @@ class Common(Configuration):
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = values.SecretValue()
 
+    ENVIRONMENT = values.Value(environ_prefix=None)
+
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = values.BooleanValue(False)
 
@@ -35,8 +37,11 @@ class Common(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
 
+        # Third party
         'django_extensions',
-	'rest_framework',
+        'rest_framework',
+
+        # Apps
     )
 
     MIDDLEWARE_CLASSES = (
