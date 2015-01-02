@@ -8,6 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 import os
+import datetime
 
 from configurations import Configuration, values
 
@@ -40,13 +41,13 @@ class Common(Configuration):
         # Third party
         'django_extensions',
         'rest_framework',
-	'django_gravatar',
-	
+        'django_gravatar',
 
-	'showcase_backend.projects',
-	'showcase_backend.users',
-	'showcase_backend.universities',
-	'showcase_backend.departments',
+        # Apps
+        'showcase_backend.projects',
+        'showcase_backend.users',
+        'showcase_backend.universities',
+        'showcase_backend.departments',
     )
 
     MIDDLEWARE_CLASSES = (
@@ -85,6 +86,30 @@ class Common(Configuration):
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/1.6/howto/static-files/
     STATIC_URL = '/static/'
+
+    MEDIA_ROOT = 'media'
+
+    MEDIA_URL = '/media/'
+
+    REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'showcase_backend.users.authentication.JSONWebTokenAuthentication',
+            'showcase_backend.users.authentication.SessionAuthentication',
+        ),
+        'DEFAULT_FILTER_BACKENDS':
+        ('rest_framework.filters.DjangoFilterBackend',),
+        'DEFAULT_PERMISSION_CLASSES': (
+            'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        ),
+        'PAGINATE_BY': 30,
+        'PAGINATE_BY_PARAM': 'page_size',
+    }
+
+    JWT_AUTH = {
+        'JWT_PAYLOAD_HANDLER':
+        'showcase_backend.utils.jwt_handlers.jwt_payload_handler',
+        'JWT_EXPIRATION_DELTA': datetime.timedelta(days=200)
+    }
 
 
 class Development(Common):
