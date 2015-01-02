@@ -38,6 +38,11 @@ class Common(Configuration):
         'django_extensions',
 	'rest_framework',
 	'django_gravatar',
+
+	'showcase_backend.projects',
+	'showcase_backend.users',
+	'showcase_backend.universities',
+	'showcase_backend.departments',
     )
 
     MIDDLEWARE_CLASSES = (
