@@ -1,7 +1,6 @@
-from rest_framework import routers
+from ..router import SharedAPIRootRouter
 
 from .views import DepartmentViewSet
 
-router = routers.DefaultRouter(trailing_slash=False)
+router = SharedAPIRootRouter(trailing_slash=False)
 router.register(r'departments', DepartmentViewSet)
-urlpatterns = router.urls
