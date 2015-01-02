@@ -80,7 +80,6 @@ docs/_build/
 # PyBuilder
 target/
 
-
 ### Django ###
 *.log
 *.pot
@@ -91,3 +90,12 @@ local_settings.py
 .env
 venv
 db.sqlite3
+
+#Virtual Environment
+venv
+
+#Dotenv
+*.env
+
+#SQLite
+*.sqlite3
