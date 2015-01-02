@@ -11,7 +11,6 @@ from django_gravatar.helpers import get_gravatar_url
 
 
 from ..utils.jwt_handlers import jwt_payload_handler, jwt_encode_handler
-from ..utils.gender_constants import GENDER_CHOICES
 from .managers import AccountManager, ActiveAccountManager
 
 
@@ -20,6 +19,9 @@ class User(AbstractBaseUser):
     last_name = models.CharField(max_length=40)
     email = models.EmailField(max_length=40)
     gravatar_url = models.URLField(blank=True)
+
+    university = models.ForeignKey('universities.University')
+    department = models.ForeignKey('departments.Department')
 
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(
@@ -143,9 +145,3 @@ class User(AbstractBaseUser):
             "Reset Password",
             "robot@bookshub.com"
         )
-
-
-class Profile(models.Model):
-    gender = models.CharField(max_length="1", choices=GENDER_CHOICES)
-    university = models.ForeignKey('universities.University')
-    department = models.ForeignKey('departments.Department')

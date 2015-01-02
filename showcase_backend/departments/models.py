@@ -10,7 +10,6 @@ class DepartmentName(models.Model):
 
 class Department(models.Model):
     name = models.ForeignKey('DepartmentName')
-    university = models.ForeignKey('universities.University')
 
     def __str__(self):
         return self.name

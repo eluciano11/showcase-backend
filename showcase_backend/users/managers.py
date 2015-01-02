@@ -5,6 +5,7 @@ from django.contrib.auth.models import BaseUserManager
 
 
 class AccountManager(BaseUserManager):
+
     def get_from_password_reset_token(self, token):
         try:
             payload = jwt.decode(token, settings.SECRET_KEY)
@@ -25,27 +26,32 @@ class AccountManager(BaseUserManager):
 
         return None
 
-    def create_user(self, email, first_name, last_name, password=None):
-
+    def create_user(self, email, first_name, last_name, department,
+                    university, password=None):
         if not email:
             raise ValueError('Users must have an email address')
 
         user = self.model(
             email=self.normalize_email(email),
             first_name=first_name,
-            last_name=last_name
+            last_name=last_name,
+            department=department,
+            university=university
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, last_name, password):
+    def create_superuser(self, email, first_name, last_name, department,
+                         university, password):
         user = self.create_user(
             email,
             password=password,
             first_name=first_name,
             last_name=last_name,
+            department=department,
+            university=university
         )
         user.is_superuser = True
         user.is_staff = True
@@ -54,6 +60,7 @@ class AccountManager(BaseUserManager):
 
 
 class ActiveAccountManager(AccountManager):
+
     def get_queryset(self):
         queryset = super(ActiveAccountManager, self).get_queryset()
         return queryset.filter(is_active=True)
