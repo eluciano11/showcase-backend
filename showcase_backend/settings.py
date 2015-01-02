@@ -36,6 +36,7 @@ class Common(Configuration):
         'django.contrib.staticfiles',
 
         'django_extensions',
+	'rest_framework',
     )
 
     MIDDLEWARE_CLASSES = (
