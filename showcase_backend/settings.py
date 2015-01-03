@@ -44,7 +44,7 @@ class Common(Configuration):
         'django_gravatar',
 
         # Apps
-        # 'showcase_backend.projects',
+        'showcase_backend.projects',
         'showcase_backend.users',
         'showcase_backend.universities',
         'showcase_backend.departments',
