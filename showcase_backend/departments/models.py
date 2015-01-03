@@ -12,4 +12,4 @@ class Department(models.Model):
     name = models.ForeignKey('DepartmentName')
 
     def __str__(self):
-        return self.name
+        return self.name.name

@@ -12,9 +12,10 @@ from django_gravatar.helpers import get_gravatar_url
 
 from ..utils.jwt_handlers import jwt_payload_handler, jwt_encode_handler
 from .managers import AccountManager, ActiveAccountManager
+from .mixins import ModelDiffMixin
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, ModelDiffMixin):
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
     email = models.EmailField(max_length=40)
