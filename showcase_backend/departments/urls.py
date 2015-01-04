@@ -2,5 +2,5 @@ from ..router import SharedAPIRootRouter
 
 from .views import DepartmentViewSet
 
-router = SharedAPIRootRouter(trailing_slash=False)
+router = SharedAPIRootRouter()
 router.register(r'departments', DepartmentViewSet)

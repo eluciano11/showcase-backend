@@ -1,5 +1,8 @@
 from django.forms.models import model_to_dict
 
+from rest_framework.response import Response
+from rest_framework.mixins import UpdateModelMixin
+
 
 class ModelDiffMixin(object):
     """
@@ -49,3 +52,21 @@ class ModelDiffMixin(object):
     def _dict(self):
         fields = [field.name for field in self._meta.fields]
         return model_to_dict(self, fields=fields)
+
+
+class UpdateModelMixin(UpdateModelMixin):
+    """
+    Update a model instance.
+    """
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        self.object = self.get_object_or_none()
+
+        serializer = self.get_serializer(self.object, data=request.DATA,
+                                         files=request.FILES, partial=partial)
+
+        if serializer.is_valid():
+            return super(UpdateModelMixin, self).update(
+                request, *args, **kwargs)
+
+        return Response(serializer.errors)

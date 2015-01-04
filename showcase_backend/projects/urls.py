@@ -2,5 +2,5 @@ from ..router import SharedAPIRootRouter
 
 from .views import ProjectViewSet
 
-router = SharedAPIRootRouter(trailing_slash=False)
+router = SharedAPIRootRouter()
 router.register(r'projects', ProjectViewSet)

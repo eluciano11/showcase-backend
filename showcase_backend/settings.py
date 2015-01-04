@@ -35,7 +35,6 @@ class Common(Configuration):
         'django.contrib.auth',
         'django.contrib.contenttypes',
         'django.contrib.sessions',
-        'django.contrib.messages',
         'django.contrib.staticfiles',
 
         # Third party
@@ -44,10 +43,10 @@ class Common(Configuration):
         'django_gravatar',
 
         # Apps
-        'showcase_backend.projects',
-        'showcase_backend.users',
         'showcase_backend.universities',
         'showcase_backend.departments',
+        'showcase_backend.users',
+        'showcase_backend.projects',
     )
 
     MIDDLEWARE_CLASSES = (
@@ -87,6 +86,10 @@ class Common(Configuration):
     # https://docs.djangoproject.com/en/1.6/howto/static-files/
     STATIC_URL = '/static/'
 
+    TEMPLATE_DIRS = (
+        os.path.join(BASE_DIR, 'templates'),
+    )
+
     MEDIA_ROOT = 'media'
 
     MEDIA_URL = '/media/'
@@ -99,17 +102,39 @@ class Common(Configuration):
         'DEFAULT_FILTER_BACKENDS':
         ('rest_framework.filters.DjangoFilterBackend',),
         'DEFAULT_PERMISSION_CLASSES': (
-            'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+            'rest_framework.permissions.IsAuthenticated',
         ),
         'PAGINATE_BY': 30,
         'PAGINATE_BY_PARAM': 'page_size',
+        'MAX_PAGINATE_BY': 100
     }
 
     JWT_AUTH = {
         'JWT_PAYLOAD_HANDLER':
         'showcase_backend.utils.jwt_handlers.jwt_payload_handler',
-        'JWT_EXPIRATION_DELTA': datetime.timedelta(days=200)
+        'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=8)
     }
+
+    AUTH_USER_MODEL = 'users.User'
+
+    LOGIN_REDIRECT_URL = '/api/users/me'
+
+    DOMAIN = values.Value(environ_prefix=None)
+
+    SITE_NAME = values.Value(environ_prefix=None)
+
+    ACTIVATION_URL = values.Value(environ_prefix=None)
+
+    PASSWORD_RESET_CONFIRM_URL = values.Value(environ_prefix=None)
+
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+    DEFAULT_FROM_EMAIL = values.Value()
+    EMAIL_HOST = values.Value()
+    EMAIL_HOST_USER = values.Value()
+    EMAIL_HOST_PASSWORD = values.Value()
+    EMAIL_PORT = values.IntegerValue()
+    EMAIL_USE_TLS = values.BooleanValue(False)
 
 
 class Development(Common):
@@ -126,6 +151,10 @@ class Development(Common):
         'debug_toolbar',
     )
 
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+    PROTOCOL = 'http'
+
 
 class Staging(Common):
     """
@@ -134,6 +163,8 @@ class Staging(Common):
     INSTALLED_APPS = Common.INSTALLED_APPS + (
         'djangosecure',
     )
+
+    PROTOCOL = 'https'
 
     # django-secure
     SESSION_COOKIE_SECURE = values.BooleanValue(True)

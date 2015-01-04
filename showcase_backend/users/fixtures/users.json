@@ -1,0 +1,12 @@
+[{
+    "model": "users.User",
+    "pk": 1,
+    "fields": {
+        "email": "foo@bar.com",
+        "password": "pbkdf2_sha256$12000$ozjeEKI4PgCY$CB+CQL62eSPOGzGWJOLUxUdhX5BHrUqsKMaEftZvgAI=",
+        "first_name": "foo",
+        "last_name": "bar",
+        "university": 1,
+        "department": 1
+    }
+}]
