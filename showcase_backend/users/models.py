@@ -13,8 +13,10 @@ from django_gravatar.helpers import get_gravatar_url
 
 
 from ..utils.jwt_handlers import jwt_payload_handler, jwt_encode_handler
-from .managers import AccountManager, ActiveAccountManager
 from ..utils.mixins import ModelDiffMixin
+from ..universities import University
+from ..departments import Department
+from .managers import AccountManager, ActiveAccountManager
 
 
 class User(AbstractBaseUser, ModelDiffMixin):
@@ -24,8 +26,8 @@ class User(AbstractBaseUser, ModelDiffMixin):
     gravatar_url = models.URLField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    university = models.ForeignKey('universities.University')
-    department = models.ForeignKey('departments.Department')
+    university = models.ForeignKey(University)
+    department = models.ForeignKey(Department)
 
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(
