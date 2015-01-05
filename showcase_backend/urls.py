@@ -17,12 +17,12 @@ urlpatterns = patterns(
         include('rest_framework.urls', namespace='rest_framework')
     ),
     url(
-        r'^api-token-auth/',
-        'rest_framework_jwt.views.obtain_jwt_token'
+        r'^api/',
+        include(get_api_urls())
     ),
     url(
         r'^api/',
-        include(get_api_urls())
+        include('showcase_backend.users.urls')
     ),
 )
 

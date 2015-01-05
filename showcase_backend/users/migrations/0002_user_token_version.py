@@ -11,10 +11,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.AddField(
             model_name='user',
             name='token_version',
-            field=models.CharField(default=b'4b9febd8-a744-43b2-80eb-d12f318ce50a', unique=True, max_length=36, db_index=True),
+            field=models.CharField(default=b'a7adea63-2d9e-40ff-bc1d-141cb61b3a26', unique=True, max_length=36, db_index=True),
             preserve_default=True,
         ),
     ]

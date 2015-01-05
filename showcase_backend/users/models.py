@@ -5,24 +5,29 @@ from calendar import timegm
 
 from django.db import models
 from django.conf import settings
+from django.template import loader
+from django.core.mail import send_mail
 from django.contrib.auth.models import AbstractBaseUser
 from rest_framework_jwt.settings import api_settings
 from django_gravatar.helpers import get_gravatar_url
 
 
 from ..utils.jwt_handlers import jwt_payload_handler, jwt_encode_handler
+from ..utils.mixins import ModelDiffMixin
+from ..universities import University
+from ..departments import Department
 from .managers import AccountManager, ActiveAccountManager
-from .mixins import ModelDiffMixin
 
 
 class User(AbstractBaseUser, ModelDiffMixin):
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
-    email = models.EmailField(max_length=40)
+    email = models.EmailField(max_length=40, unique=True)
     gravatar_url = models.URLField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
-    university = models.ForeignKey('universities.University')
-    department = models.ForeignKey('departments.Department')
+    university = models.ForeignKey(University)
+    department = models.ForeignKey(Department)
 
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(
@@ -36,7 +41,7 @@ class User(AbstractBaseUser, ModelDiffMixin):
     active = ActiveAccountManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['email', 'first_name', 'last_name']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'university', 'department']
 
     def __str__(self):
         return self.email
@@ -118,6 +123,12 @@ class User(AbstractBaseUser, ModelDiffMixin):
         """
         return self.first_name or self.email
 
+    def email_user(self, subject, message, from_email=None, **kwargs):
+        """
+        Sends an email to this User.
+        """
+        send_mail(subject, message, from_email, [self.email], **kwargs)
+
     def set_password(self, raw_password):
         """
         Sets the user's password and changes token_version.
@@ -133,16 +144,26 @@ class User(AbstractBaseUser, ModelDiffMixin):
         self.reset_token_version()
         self.save()
 
-        # TODO: send notification email - not sure if needed
-
     def reset_token_version(self):
         """
         Resets the user's token_version.
         """
         self.token_version = str(uuid.uuid4())
 
+    def get_email_context(self):
+        print self.password_reset_token
+        return {
+            "domain": settings.DOMAIN,
+            "site_name": settings.SITE_NAME,
+            "token": self.password_reset_token,
+            "protocol": settings.PROTOCOL,
+            "url": settings.PASSWORD_RESET_CONFIRM_URL
+        }
+
     def send_password_reset_email(self):
         self.email_user(
-            "Reset Password",
-            "robot@bookshub.com"
+            subject="Reset Password",
+            message=loader.render_to_string(
+                "email/password_reset_email_body.txt",
+                self.get_email_context())
         )

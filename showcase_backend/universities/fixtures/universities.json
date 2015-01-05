@@ -1,0 +1,25 @@
+[{
+    "model": "universities.university",
+    "pk": 1,
+    "fields": {
+        "name": "University of Puerto Rico at Bayamon",
+        "emblem": "myemblem.png",
+        "town": "Bayamon"
+    }
+}, {
+    "model": "universities.university",
+    "pk": 2,
+    "fields": {
+        "name": "University of Puerto Rico at Rio Piedras",
+        "emblem": "myemblem1.png",
+        "town": "Rio Piedras"
+    }
+}, {
+    "model": "universities.university",
+    "pk": 3,
+    "fields": {
+        "name": "University of Puerto Rico at Mayaguez",
+        "emblem": "myemblem2.png",
+        "town": "Mayaguez"
+    }
+}]

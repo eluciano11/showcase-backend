@@ -1,6 +1,31 @@
-from ..router import SharedAPIRootRouter
+from django.conf.urls import patterns
 
-from .views import UserViewSet
+from . import views
 
-router = SharedAPIRootRouter(trailing_slash=False)
-router.register(r'users', UserViewSet)
+urlpatterns = patterns(
+    # Prefix
+    '',
+    (
+        r'auth/login/$',
+        views.LoginView.as_view()
+    ),
+    (
+        r'auth/signup/$',
+        views.SignupView.as_view()
+    ),
+    (
+        r'auth/forgot_password/$',
+        views.ForgotPasswordView.as_view()),
+    (
+        r'auth/reset_password/$',
+        views.ResetPasswordView.as_view()
+    ),
+    (
+        r'users/me/$',
+        views.UserSettingsView.as_view()
+    ),
+    (
+        r'users/me/change_password/$',
+        views.ChangePasswordView.as_view()
+    ),
+)
