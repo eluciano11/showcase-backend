@@ -14,8 +14,8 @@ from django_gravatar.helpers import get_gravatar_url
 
 from ..utils.jwt_handlers import jwt_payload_handler, jwt_encode_handler
 from ..utils.mixins import ModelDiffMixin
-from ..universities import University
-from ..departments import Department
+from ..universities.models import University
+from ..departments.models import Department
 from .managers import AccountManager, ActiveAccountManager
 
 
