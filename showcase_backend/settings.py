@@ -41,6 +41,7 @@ class Common(Configuration):
         'django_extensions',
         'rest_framework',
         'django_gravatar',
+        'corsheaders',
 
         # Apps
         'showcase_backend.universities',
@@ -52,6 +53,7 @@ class Common(Configuration):
     MIDDLEWARE_CLASSES = (
         'djangosecure.middleware.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
+        'corsheaders.middleware.CorsMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -135,6 +137,10 @@ class Common(Configuration):
     EMAIL_HOST_PASSWORD = values.Value()
     EMAIL_PORT = values.IntegerValue()
     EMAIL_USE_TLS = values.BooleanValue(False)
+
+    #CORS
+    #It's true just for development purposes. we can create the whitelist later
+    CORS_ORIGIN_ALLOW_ALL = True
 
 
 class Development(Common):
