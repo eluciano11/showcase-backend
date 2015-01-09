@@ -97,18 +97,25 @@ class Common(Configuration):
     MEDIA_URL = '/media/'
 
     REST_FRAMEWORK = {
-        'DEFAULT_AUTHENTICATION_CLASSES': (
-            'showcase_backend.users.authentication.JSONWebTokenAuthentication',
-            'showcase_backend.users.authentication.SessionAuthentication',
+        'PAGINATE_BY': 10,
+        'PAGINATE_BY_PARAM': 'page_size',
+        'MAX_PAGINATE_BY': 100,
+        'DEFAULT_PAGINATION_SERIALIZER_CLASS':
+            'rest_framework_ember.pagination.PaginationSerializer',
+        'DEFAULT_PARSER_CLASSES': (
+            'rest_framework_ember.parsers.JSONParser',
+            'rest_framework.parsers.FormParser',
+            'rest_framework.parsers.MultiPartParser'
+        ),
+        'DEFAULT_RENDERER_CLASSES': (
+            'rest_framework_ember.renderers.JSONRenderer',
+            'rest_framework.renderers.BrowsableAPIRenderer',
         ),
         'DEFAULT_FILTER_BACKENDS':
         ('rest_framework.filters.DjangoFilterBackend',),
         'DEFAULT_PERMISSION_CLASSES': (
             'rest_framework.permissions.IsAuthenticated',
-        ),
-        'PAGINATE_BY': 30,
-        'PAGINATE_BY_PARAM': 'page_size',
-        'MAX_PAGINATE_BY': 100
+        )
     }
 
     JWT_AUTH = {
@@ -143,6 +150,9 @@ class Common(Configuration):
     CORS_ORIGIN_ALLOW_ALL = True
 
     APPEND_SLASH = False
+
+    REST_EMBER_FORMAT_KEYS = True
+    REST_EMBER_PLURALIZE_KEYS = True
 
 
 class Development(Common):
