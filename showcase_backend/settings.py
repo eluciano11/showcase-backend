@@ -100,8 +100,12 @@ class Common(Configuration):
         'PAGINATE_BY': 10,
         'PAGINATE_BY_PARAM': 'page_size',
         'MAX_PAGINATE_BY': 100,
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'showcase_backend.users.authentication.JSONWebTokenAuthentication',
+            'showcase_backend.users.authentication.SessionAuthentication',
+        ),
         'DEFAULT_PAGINATION_SERIALIZER_CLASS':
-            'rest_framework_ember.pagination.PaginationSerializer',
+        'rest_framework_ember.pagination.PaginationSerializer',
         'DEFAULT_PARSER_CLASSES': (
             'rest_framework_ember.parsers.JSONParser',
             'rest_framework.parsers.FormParser',
