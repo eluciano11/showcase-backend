@@ -142,6 +142,8 @@ class Common(Configuration):
     #It's true just for development purposes. we can create the whitelist later
     CORS_ORIGIN_ALLOW_ALL = True
 
+    APPEND_SLASH = False
+
 
 class Development(Common):
     """

@@ -6,7 +6,7 @@ urlpatterns = patterns(
     # Prefix
     '',
     (
-        r'auth/login/$',
+        r'auth/login$',
         views.LoginView.as_view()
     ),
     (
