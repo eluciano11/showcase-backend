@@ -10,22 +10,22 @@ urlpatterns = patterns(
         views.LoginView.as_view()
     ),
     (
-        r'auth/signup/$',
+        r'auth/signup$',
         views.SignupView.as_view()
     ),
     (
-        r'auth/forgot_password/$',
+        r'auth/forgot_password$',
         views.ForgotPasswordView.as_view()),
     (
-        r'auth/reset_password/$',
+        r'auth/reset_password$',
         views.ResetPasswordView.as_view()
     ),
     (
-        r'users/me/$',
+        r'users/me$',
         views.UserSettingsView.as_view()
     ),
     (
-        r'users/me/change_password/$',
+        r'users/me/change_password$',
         views.ChangePasswordView.as_view()
     ),
 )
