@@ -104,7 +104,7 @@ class Common(Configuration):
         'DEFAULT_FILTER_BACKENDS':
         ('rest_framework.filters.DjangoFilterBackend',),
         'DEFAULT_PERMISSION_CLASSES': (
-            'rest_framework.permissions.IsAuthenticated',
+            'rest_framework.permissions.IsAuthenticatedOrReadOnly',
         ),
         'PAGINATE_BY': 30,
         'PAGINATE_BY_PARAM': 'page_size',

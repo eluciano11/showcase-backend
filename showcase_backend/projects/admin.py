@@ -8,12 +8,13 @@ class ProjectAdmin(admin.ModelAdmin):
         u'id',
         'created_by',
         'created_at',
-        'name',
+        'title',
+        'summary',
         'story',
         'screenshot',
     )
     list_filter = ('created_by', 'created_at')
-    search_fields = ('name',)
+    search_fields = ('title', )
     date_hierarchy = 'created_at'
 
 admin.site.register(Project, ProjectAdmin)

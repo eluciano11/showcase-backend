@@ -8,3 +8,4 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     model = Department
     serializer_class = DepartmentSerializer
     queryset = Department.objects.all()
+    lookup_field = 'slug'

@@ -1,5 +1,7 @@
 from django.db import models
 
+from autoslug import AutoSlugField
+
 
 class University(models.Model):
     class Meta:
@@ -7,6 +9,7 @@ class University(models.Model):
         verbose_name_plural = 'universities'
 
     name = models.CharField(max_length=50)
+    slug = AutoSlugField(populate_from='name')
     emblem = models.FileField(upload_to='emblems/%Y/%m/%d')
     town = models.CharField(max_length=30)
 
