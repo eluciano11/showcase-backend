@@ -9,9 +9,10 @@ class Project(models.Model):
 
     created_by = models.ForeignKey(User)
     created_at = models.DateTimeField(auto_now_add=True)
-    name = models.CharField(max_length=30)
+    title = models.CharField(max_length=30)
+    summary = models.CharField(max_length=140)
     story = models.TextField()
     screenshot = models.FileField(upload_to='screenshot/%Y/%m/%d')
 
     def __str__(self):
-        return self.name
+        return self.title
