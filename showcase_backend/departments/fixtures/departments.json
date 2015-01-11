@@ -2,30 +2,35 @@
     "model": "departments.department",
     "pk": 1,
     "fields": {
-        "name": "Computer Science"
+        "name": "Computer Science",
+        "slug": "computer-science"
     }
 }, {
     "model": "departments.department",
     "pk": 2,
     "fields": {
-        "name": "Biology"
+        "name": "Biology",
+        "slug": "biology"
     }
 }, {
     "model": "departments.department",
     "pk": 3,
     "fields": {
-        "name": "Math"
+        "name": "Math",
+        "slug": "math"
     }
 }, {
     "model": "departments.department",
     "pk": 4,
     "fields": {
-        "name": "Engineering"
+        "name": "Engineering",
+        "slug": "engineering"
     }
 }, {
     "model": "departments.department",
     "pk": 5,
     "fields": {
-        "name": "Business"
+        "name": "Business",
+        "slug": "business"
     }
 }]

@@ -2,6 +2,7 @@ Django==1.7.1
 PyJWT==0.3.2
 Werkzeug==0.9.6
 dj-database-url==0.3.0
+django-autoslug==1.7.2
 django-configurations==0.8
 django-cors-headers==1.0.0
 django-debug-toolbar==1.2.2

@@ -1,8 +1,8 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 
 from .models import University
 
 
-class UniversitySerializer(ModelSerializer):
+class UniversitySerializer(serializers.ModelSerializer):
     class Meta:
         model = University

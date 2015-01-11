@@ -4,7 +4,8 @@
     "fields": {
         "name": "University of Puerto Rico at Bayamon",
         "emblem": "myemblem.png",
-        "town": "Bayamon"
+        "town": "Bayamon",
+        "slug": "university-of-puerto-rico-at-bayamon"
     }
 }, {
     "model": "universities.university",
@@ -12,7 +13,8 @@
     "fields": {
         "name": "University of Puerto Rico at Rio Piedras",
         "emblem": "myemblem1.png",
-        "town": "Rio Piedras"
+        "town": "Rio Piedras",
+        "slug": "university-of-puerto-rico-at-rio-piedras"
     }
 }, {
     "model": "universities.university",
@@ -20,6 +22,7 @@
     "fields": {
         "name": "University of Puerto Rico at Mayaguez",
         "emblem": "myemblem2.png",
-        "town": "Mayaguez"
+        "town": "Mayaguez",
+        "slug": "university-of-puerto-rico-at-mayaguez"
     }
 }]
