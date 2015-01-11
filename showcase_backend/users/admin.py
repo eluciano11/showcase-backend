@@ -7,7 +7,6 @@ from .forms import UserCreationForm, UserChangeForm
 
 
 class UserAdmin(DJUserAdmin, admin.ModelAdmin):
-    # The forms to add and change user instances
     form = UserChangeForm
     add_form = UserCreationForm
 
