@@ -7,6 +7,7 @@ from ..utils.views import RetrieveUpdateView
 
 
 class LoginView(generics.CreateAPIView):
+    resource_name = False
     authentication_classes = ()
     permission_classes = ()
     serializer_class = serializers.SigninSerializer
