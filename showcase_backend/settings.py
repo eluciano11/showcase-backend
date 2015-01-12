@@ -42,6 +42,7 @@ class Common(Configuration):
         'rest_framework',
         'django_gravatar',
         'corsheaders',
+        'ember_drf',
 
         # Apps
         'showcase_backend.universities',
@@ -97,6 +98,17 @@ class Common(Configuration):
     MEDIA_URL = '/media/'
 
     REST_FRAMEWORK = {
+        'PAGINATE_BY': 10,
+        'PAGINATE_BY_PARAM': 'page_size',
+        'MAX_PAGINATE_BY': 100,
+        'DEFAULT_RENDERER_CLASSES': (
+            'ember_drf.renderers.EmberJSONRenderer',
+            'rest_framework.renderers.BrowsableAPIRenderer',
+        ),
+        'DEFAULT_PARSER_CLASSES': (
+            'ember_drf.parsers.EmberJSONParser',
+            'rest_framework.parsers.MultiPartParser',
+        ),
         'DEFAULT_AUTHENTICATION_CLASSES': (
             'showcase_backend.users.authentication.JSONWebTokenAuthentication',
             'showcase_backend.users.authentication.SessionAuthentication',
@@ -109,6 +121,7 @@ class Common(Configuration):
         'PAGINATE_BY': 30,
         'PAGINATE_BY_PARAM': 'page_size',
         'MAX_PAGINATE_BY': 100
+        ('rest_framework.filters.DjangoFilterBackend',)
     }
 
     JWT_AUTH = {
