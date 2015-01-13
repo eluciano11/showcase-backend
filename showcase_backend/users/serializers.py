@@ -32,9 +32,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
+        base_key = 'user'
         fields = ('id', 'email', 'first_name', 'last_name',
                   'gravatar_url', 'university', 'department',
-                  'token', 'created_at')
+                  'token', 'created_at', 'slug')
 
 
 class UserSimpleSerializer(serializers.ModelSerializer):
@@ -46,7 +47,7 @@ class UserSimpleSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'email', 'first_name', 'last_name',
                   'gravatar_url', 'university', 'department',
-                  'created_at')
+                  'created_at', 'slug')
 
 
 class SignupSerializer(serializers.ModelSerializer):
@@ -195,7 +196,7 @@ class UserSettingsSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'email', 'first_name', 'last_name',
             'gravatar_url', 'university', 'department',
-            'created_at', 'token'
+            'created_at', 'token', 'slug'
         )
 
     def validate_email(self, value):

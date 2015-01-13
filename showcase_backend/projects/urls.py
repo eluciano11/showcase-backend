@@ -1,6 +1,6 @@
 from ..router import SharedAPIRootRouter
 
-from .views import ProjectViewSet
+from . import views
 
 router = SharedAPIRootRouter()
-router.register(r'projects', ProjectViewSet)
+router.register(r'projects', views.ProjectViewSet)

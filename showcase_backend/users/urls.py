@@ -21,7 +21,7 @@ urlpatterns = patterns(
         views.ResetPasswordView.as_view()
     ),
     (
-        r'users/me$',
+        r'users/(?P<slug>[-\w]+)$',
         views.UserSettingsView.as_view()
     ),
     (

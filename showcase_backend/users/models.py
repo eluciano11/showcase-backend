@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import AbstractBaseUser
 from rest_framework_jwt.settings import api_settings
 from django_gravatar.helpers import get_gravatar_url
+from autoslug import AutoSlugField
 
 
 from ..utils.jwt_handlers import jwt_payload_handler, jwt_encode_handler
@@ -19,12 +20,17 @@ from ..departments.models import Department
 from .managers import AccountManager, ActiveAccountManager
 
 
+def populate_user_slug(instance):
+    return instance.get_full_name()
+
+
 class User(AbstractBaseUser, ModelDiffMixin):
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
     email = models.EmailField(max_length=40, unique=True)
     gravatar_url = models.URLField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    slug = AutoSlugField(populate_from=populate_user_slug, unique=True)
 
     university = models.ForeignKey(University)
     department = models.ForeignKey(Department)
@@ -115,7 +121,7 @@ class User(AbstractBaseUser, ModelDiffMixin):
         Returns the first_name plus the last_name, with a space in between.
         """
         full_name = '%s %s' % (self.first_name, self.last_name)
-        return full_name.strip() or self.username
+        return full_name.strip()
 
     def get_short_name(self):
         """

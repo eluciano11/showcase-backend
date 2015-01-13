@@ -113,15 +113,16 @@ class Common(Configuration):
             'showcase_backend.users.authentication.JSONWebTokenAuthentication',
             'showcase_backend.users.authentication.SessionAuthentication',
         ),
-        'DEFAULT_FILTER_BACKENDS':
-        ('rest_framework.filters.DjangoFilterBackend',),
+        'DEFAULT_FILTER_BACKENDS': (
+            'rest_framework.filters.DjangoFilterBackend',
+            'ember_drf.filters.CoallesceIDsFilterBackend'
+        ),
         'DEFAULT_PERMISSION_CLASSES': (
             'rest_framework.permissions.IsAuthenticatedOrReadOnly',
         ),
         'PAGINATE_BY': 30,
         'PAGINATE_BY_PARAM': 'page_size',
         'MAX_PAGINATE_BY': 100
-        ('rest_framework.filters.DjangoFilterBackend',)
     }
 
     JWT_AUTH = {
