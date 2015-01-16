@@ -195,7 +195,7 @@ class UserSettingsSerializer(serializers.ModelSerializer):
 
     def validate_email(self, value):
         email = value.lower()
-        user = self.object
+        user = self.context['request'].user
 
         users = User.objects.filter(
             email__iexact=email).exclude(pk=user.id)
