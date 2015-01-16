@@ -15,8 +15,6 @@ from autoslug import AutoSlugField
 
 from ..utils.jwt_handlers import jwt_payload_handler, jwt_encode_handler
 from ..utils.mixins import ModelDiffMixin
-from ..universities.models import University
-from ..departments.models import Department
 from .managers import AccountManager, ActiveAccountManager
 
 
@@ -32,9 +30,6 @@ class User(AbstractBaseUser, ModelDiffMixin):
     created_at = models.DateTimeField(auto_now_add=True)
     slug = AutoSlugField(populate_from=populate_user_slug, unique=True)
 
-    university = models.ForeignKey(University)
-    department = models.ForeignKey(Department)
-
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(
         default=False)
@@ -47,7 +42,7 @@ class User(AbstractBaseUser, ModelDiffMixin):
     active = ActiveAccountManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'university', 'department']
+    REQUIRED_FIELDS = ['first_name', 'last_name', ]
 
     def __str__(self):
         return self.email

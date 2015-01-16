@@ -17,16 +17,12 @@ class UserAdmin(DJUserAdmin, admin.ModelAdmin):
         'last_name',
         'email',
         'gravatar_url',
-        'university',
-        'department',
         'is_staff',
         'is_superuser',
         'is_active',
     )
     list_filter = (
         'last_login',
-        'university',
-        'department',
         'is_staff',
         'is_superuser',
         'is_active',
@@ -34,17 +30,14 @@ class UserAdmin(DJUserAdmin, admin.ModelAdmin):
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name',
-                                      'university', 'department',
-                                      )}),
+        ('Personal info', {'fields': ('first_name', 'last_name', )}),
         ('Permissions', {'fields': ('is_active', 'is_superuser',)}),
     )
 
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2',
-                       'university', 'department')
+            'fields': ('email', 'password1', 'password2', )
         }
         ),
     )

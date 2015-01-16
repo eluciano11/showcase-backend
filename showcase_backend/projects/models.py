@@ -3,6 +3,8 @@ from django.db import models
 from autoslug import AutoSlugField
 
 from ..users.models import User
+from ..universities.models import University
+from ..departments.models import Department
 
 
 class Project(models.Model):
@@ -10,6 +12,9 @@ class Project(models.Model):
         ordering = ['created_at']
 
     created_by = models.ForeignKey(User)
+    university = models.ForeignKey(University)
+    department = models.ForeignKey(Department)
+
     created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=30)
     slug = AutoSlugField(populate_from='title')

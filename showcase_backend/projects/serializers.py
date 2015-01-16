@@ -7,9 +7,9 @@ class ProjectSerializer(ModelSerializer):
     class Meta:
         model = Project
 
-    def save_object(self, obj, **kwargs):
-        obj.created_by = self.context['request'].user
-        super(ProjectSerializer, self).save_object(obj, **kwargs)
+    def create(self, obj, **kwargs):
+        obj['created_by'] = self.context['request'].user
+        return super(ProjectSerializer, self).create(obj, **kwargs)
 
 
 class ProjectDepartmentSerializer(ModelSerializer):

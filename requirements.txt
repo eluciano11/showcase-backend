@@ -1,5 +1,6 @@
 Django==1.7.1
 PyJWT==0.3.2
+PyYAML==3.11
 Werkzeug==0.9.6
 dj-database-url==0.3.0
 django-autoslug==1.7.2
@@ -14,7 +15,9 @@ django-gravatar2==1.1.4
 django-secure==1.0.1
 djangorestframework==3.0.2
 djangorestframework-jwt==1.1.1
+emberdrf==0.1.7
 gunicorn==19.1.1
+inflection==0.2.1
 newrelic==2.36.0.30
 psycopg2==2.5.4
 pytz==2014.10

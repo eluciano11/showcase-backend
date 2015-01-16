@@ -12,8 +12,10 @@ class ProjectAdmin(admin.ModelAdmin):
         'summary',
         'story',
         'screenshot',
+        'university',
+        'department'
     )
-    list_filter = ('created_by', 'created_at')
+    list_filter = ('created_by', 'created_at', 'university', 'department')
     search_fields = ('title', )
     date_hierarchy = 'created_at'
 
