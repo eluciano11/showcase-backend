@@ -66,7 +66,6 @@ class ResetPasswordView(generics.CreateAPIView):
 class UserSettingsView(RetrieveUpdateView):
     model = User
     serializer_class = serializers.UserSettingsSerializer
-    lookup_field = 'slug'
 
     def get_object(self):
         return self.request.user
