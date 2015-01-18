@@ -77,3 +77,22 @@ class ChangePasswordView(generics.UpdateAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class UsersView(generics.ListAPIView):
+    model = User
+    serializer_class = serializers.UserSimpleSerializer
+    queryset = User.objects.all()
+    authentication_classes = ()
+    permission_classes = ()
+
+
+class SpecificUserView(generics.RetrieveAPIView):
+    model = User
+    serializer_class = serializers.UserSimpleSerializer
+    lookup_field = 'slug'
+    authentication_classes = ()
+    permission_classes = ()
+
+    def get_queryset(self):
+        return User.objects.filter(slug=self.kwargs['slug'])

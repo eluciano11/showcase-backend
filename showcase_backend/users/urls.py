@@ -21,11 +21,19 @@ urlpatterns = patterns(
         views.ResetPasswordView.as_view()
     ),
     (
-        r'users/me$',
+        r'users$',
+        views.UsersView.as_view()
+    ),
+    (
+        r'users/(?P<slug>[-\w]+)$',
+        views.SpecificUserView.as_view()
+    ),
+    (
+        r'users/edit/me$',
         views.UserSettingsView.as_view()
     ),
     (
-        r'users/me/change_password$',
+        r'users/edit/me/change_password$',
         views.ChangePasswordView.as_view()
     ),
 )

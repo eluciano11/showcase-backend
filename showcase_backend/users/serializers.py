@@ -1,11 +1,14 @@
 from django.utils.encoding import smart_str
 from django.contrib.auth import authenticate
+from django.utils.text import slugify
+
 from rest_framework import serializers
 
 from .models import User
 
 
 class SigninSerializer(serializers.Serializer):
+
     """
     Serializer that handles signin endpoint data.
     """
@@ -26,6 +29,7 @@ class SigninSerializer(serializers.Serializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+
     """
     Serializers used for User objects.
     """
@@ -38,6 +42,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserSimpleSerializer(serializers.ModelSerializer):
+
     """
     Serializers used for User objects.
     """
@@ -49,6 +54,7 @@ class UserSimpleSerializer(serializers.ModelSerializer):
 
 
 class SignupSerializer(serializers.ModelSerializer):
+
     """
     Serializers used to create a user.
     """
@@ -92,6 +98,7 @@ class SignupSerializer(serializers.ModelSerializer):
 
 
 class ChangePasswordSerializer(serializers.ModelSerializer):
+
     """
     Serializer that handles change password in user settings endpoint.
     """
@@ -132,6 +139,7 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
 
 
 class ForgotPasswordSerializer(serializers.Serializer):
+
     """
     Serializer that handles forgot password endpoint.
     """
@@ -151,6 +159,7 @@ class ForgotPasswordSerializer(serializers.Serializer):
 
 
 class ResetPasswordSerializer(serializers.Serializer):
+
     """
     Serializer that handles reset password endpoint.
     """
@@ -179,6 +188,7 @@ class ResetPasswordSerializer(serializers.Serializer):
 
 
 class UserSettingsSerializer(serializers.ModelSerializer):
+
     """
     Serializer that handles user settings endpoint.
     """
@@ -205,3 +215,29 @@ class UserSettingsSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(msg)
 
         return value
+
+    def validate(self, data):
+        user = User.objects.get(pk=self.context['request'].user.id)
+
+        if (user.first_name.lower() != data['first_name'].lower() or
+                user.last_name.lower() != data['last_name'].lower()):
+
+            full_name = data['first_name'] + ' ' + data['last_name']
+            slug = slugify(full_name)
+
+            unique = False
+            count = 2
+
+            while not unique:
+                users = User.objects.filter(
+                    slug__iexact=slug).exclude(pk=user.id)
+
+                if users.exists():
+                    slug += '-' + str(count)
+                    count += 1
+
+                else:
+                    data['slug'] = slug
+                    unique = True
+
+        return data
