@@ -20,7 +20,7 @@ class Project(models.Model):
     slug = AutoSlugField(populate_from='title')
     summary = models.CharField(max_length=140)
     story = models.TextField()
-    screenshot = models.FileField(upload_to='screenshot/%Y/%m/%d')
+    screenshot = models.FileField(upload_to='screenshot/%Y/%m/%d', blank=True)
 
     def __str__(self):
         return self.title
