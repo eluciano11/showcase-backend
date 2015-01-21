@@ -9,7 +9,7 @@ from ..departments.models import Department
 
 class Project(models.Model):
     class Meta:
-        ordering = ['created_at']
+        ordering = ['created_at', ]
 
     created_by = models.ForeignKey(User)
     university = models.ForeignKey(University)
@@ -17,7 +17,7 @@ class Project(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=30)
-    slug = AutoSlugField(populate_from='title')
+    slug = AutoSlugField(populate_from='title', unique=True)
     summary = models.CharField(max_length=140)
     story = models.TextField()
     screenshot = models.FileField(upload_to='screenshot/%Y/%m/%d', blank=True)

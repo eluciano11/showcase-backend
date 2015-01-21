@@ -1,8 +1,7 @@
-from rest_framework.generics import ListAPIView
 from rest_framework.viewsets import ModelViewSet
 
 from .models import Project
-from .serializers import ProjectSerializer, ProjectDepartmentSerializer
+from .serializers import ProjectSerializer
 
 
 class ProjectViewSet(ModelViewSet):
@@ -13,14 +12,3 @@ class ProjectViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
-
-    def perform_update(self, serializer):
-        serializer.save(created_by=self.request.user)
-
-
-class ProjectDepartmentListAPIView(ListAPIView):
-    model = Project
-    serializer_class = ProjectDepartmentSerializer
-
-    def get_queryset(self):
-        slug = self.request.slug

@@ -1,10 +1,10 @@
-from rest_framework import viewsets
+from rest_framework.viewsets import ModelViewSet
 
 from .models import Department
 from .serializers import DepartmentSerializer
 
 
-class DepartmentViewSet(viewsets.ModelViewSet):
+class DepartmentViewSet(ModelViewSet):
     model = Department
     serializer_class = DepartmentSerializer
     queryset = Department.objects.all()
