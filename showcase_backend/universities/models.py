@@ -21,5 +21,4 @@ class University(models.Model):
         return self.name
 
     def get_university_fullname(self):
-        fullname = '%s %s' % (self.name, self.town)
-        return fullname
+        return '%s %s' % (self.name, self.town)

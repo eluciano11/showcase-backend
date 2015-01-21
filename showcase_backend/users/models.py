@@ -152,7 +152,6 @@ class User(AbstractBaseUser, ModelDiffMixin):
         self.token_version = str(uuid.uuid4())
 
     def get_email_context(self):
-        print self.password_reset_token
         return {
             "domain": settings.DOMAIN,
             "site_name": settings.SITE_NAME,

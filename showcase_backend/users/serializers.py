@@ -8,7 +8,6 @@ from .models import User
 
 
 class SigninSerializer(serializers.Serializer):
-
     """
     Serializer that handles signin endpoint data.
     """
@@ -29,7 +28,6 @@ class SigninSerializer(serializers.Serializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-
     """
     Serializers used for User objects.
     """
@@ -42,7 +40,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserSimpleSerializer(serializers.ModelSerializer):
-
     """
     Serializers used for User objects.
     """
@@ -54,7 +51,6 @@ class UserSimpleSerializer(serializers.ModelSerializer):
 
 
 class SignupSerializer(serializers.ModelSerializer):
-
     """
     Serializers used to create a user.
     """
@@ -98,7 +94,6 @@ class SignupSerializer(serializers.ModelSerializer):
 
 
 class ChangePasswordSerializer(serializers.ModelSerializer):
-
     """
     Serializer that handles change password in user settings endpoint.
     """
@@ -139,7 +134,6 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
 
 
 class ForgotPasswordSerializer(serializers.Serializer):
-
     """
     Serializer that handles forgot password endpoint.
     """
@@ -159,7 +153,6 @@ class ForgotPasswordSerializer(serializers.Serializer):
 
 
 class ResetPasswordSerializer(serializers.Serializer):
-
     """
     Serializer that handles reset password endpoint.
     """
@@ -188,7 +181,6 @@ class ResetPasswordSerializer(serializers.Serializer):
 
 
 class UserSettingsSerializer(serializers.ModelSerializer):
-
     """
     Serializer that handles user settings endpoint.
     """
