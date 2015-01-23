@@ -25,7 +25,7 @@ urlpatterns = patterns(
         views.UsersView.as_view()
     ),
     (
-        r'users/(?P<slug>[-\w]+)$',
+        r'users/(?P<id>[-\w]+)$',
         views.SpecificUserView.as_view()
     ),
     (

@@ -90,9 +90,9 @@ class UsersView(generics.ListAPIView):
 class SpecificUserView(generics.RetrieveAPIView):
     model = User
     serializer_class = serializers.UserSimpleSerializer
-    lookup_field = 'slug'
+    lookup_field = 'id'
     authentication_classes = ()
     permission_classes = ()
 
     def get_queryset(self):
-        return User.objects.filter(slug=self.kwargs['slug'])
+        return User.objects.filter(pk=self.kwargs['id'])
