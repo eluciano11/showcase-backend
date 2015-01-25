@@ -43,7 +43,7 @@ class Common(Configuration):
         'django_gravatar',
         'corsheaders',
         'ember_drf',
-	'watson',
+        'watson',
 
         # Apps
         'showcase_backend.universities',
