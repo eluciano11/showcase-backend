@@ -7,7 +7,7 @@ from .serializers import ProjectSerializer
 class ProjectViewSet(ModelViewSet):
     model = Project
     serializer_class = ProjectSerializer
-    lookup_field = 'slug'
+    lookup_field = 'id'
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
