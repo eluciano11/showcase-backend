@@ -1,6 +1,6 @@
-from django.apps import AppConfig
-
 import watson
+
+from django.apps import AppConfig
 
 
 class UsersConfig(AppConfig):
@@ -9,4 +9,5 @@ class UsersConfig(AppConfig):
     verbose_name = 'Users'
 
     def ready(self):
-        watson.register(self.get_model('User'))
+        watson.register(
+            self.get_model('User'))

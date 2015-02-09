@@ -1,6 +1,6 @@
-from django.apps import AppConfig
-
 import watson
+
+from django.apps import AppConfig
 
 
 class ProjectsConfig(AppConfig):

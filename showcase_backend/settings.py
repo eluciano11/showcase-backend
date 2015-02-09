@@ -50,6 +50,7 @@ class Common(Configuration):
         'showcase_backend.departments',
         'showcase_backend.users',
         'showcase_backend.projects',
+        'showcase_backend.search'
     )
 
     MIDDLEWARE_CLASSES = (

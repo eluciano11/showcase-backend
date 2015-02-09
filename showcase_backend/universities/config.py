@@ -1,6 +1,6 @@
-from django.apps import AppConfig
-
 import watson
+
+from django.apps import AppConfig
 
 
 class UniversitiesConfig(AppConfig):
@@ -9,4 +9,5 @@ class UniversitiesConfig(AppConfig):
     verbose_name = 'Universities'
 
     def ready(self):
-        watson.register(self.get_model('University'))
+        watson.register(
+            self.get_model('University'))
