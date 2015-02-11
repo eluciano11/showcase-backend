@@ -22,3 +22,6 @@ class University(models.Model):
 
     def get_university_fullname(self):
         return '%s %s' % (self.name, self.town)
+
+    def get_absolute_url(self):
+        return 'api/universities/%d' % self.id

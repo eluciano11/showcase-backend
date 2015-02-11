@@ -25,3 +25,4 @@ requests==2.5.1
 six==1.8.0
 sqlparse==0.1.13
 wsgiref==0.1.2
+git+https://github.com/etianen/django-watson
