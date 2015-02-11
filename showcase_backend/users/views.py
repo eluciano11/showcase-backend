@@ -1,6 +1,8 @@
 from rest_framework.response import Response
 from rest_framework import generics
 
+from django.shortcuts import get_object_or_404
+
 from . import serializers
 from .models import User
 from ..utils.views import RetrieveUpdateView
@@ -13,11 +15,8 @@ class LoginView(generics.CreateAPIView):
 
     def post(self, request):
         serializer = self.get_serializer(data=request.DATA)
-
-        if serializer.is_valid():
-            return Response(serializer.validated_data)
-
-        return Response(serializer.errors)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.validated_data)
 
 
 class SignupView(generics.CreateAPIView):
@@ -27,11 +26,8 @@ class SignupView(generics.CreateAPIView):
 
     def post(self, request):
         serializer = self.get_serializer(data=request.DATA)
-
-        if serializer.is_valid():
-            return Response(serializer.validated_data)
-
-        return Response(serializer.errors)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.validated_data)
 
 
 class ForgotPasswordView(generics.CreateAPIView):
@@ -41,12 +37,9 @@ class ForgotPasswordView(generics.CreateAPIView):
 
     def post(self, request):
         serializer = self.get_serializer(data=request.DATA)
-
-        if serializer.is_valid():
-            serializer.send_password_reset_email()
-            return Response(serializer.validated_data)
-
-        return Response(serializer.errors)
+        serializer.is_valid(raise_exception=True)
+        serializer.send_password_reset_email()
+        return Response(serializer.validated_data)
 
 
 class ResetPasswordView(generics.CreateAPIView):
@@ -56,11 +49,8 @@ class ResetPasswordView(generics.CreateAPIView):
 
     def post(self, request):
         serializer = self.get_serializer(data=request.DATA)
-
-        if serializer.is_valid():
-            return Response(serializer.validated_data)
-
-        return Response(serializer.errors)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.validated_data)
 
 
 class UserSettingsView(RetrieveUpdateView):
@@ -95,4 +85,4 @@ class SpecificUserView(generics.RetrieveAPIView):
     permission_classes = ()
 
     def get_queryset(self):
-        return User.objects.filter(pk=self.kwargs['id'])
+        return get_object_or_404(User, pk=self.kwargs['id'])
