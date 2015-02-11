@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 import django.utils.timezone
-import showcase_backend.users.mixins
 
 
 class Migration(migrations.Migration):
@@ -32,7 +31,6 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
-            },
-            bases=(models.Model, showcase_backend.users.mixins.ModelDiffMixin),
+            }
         ),
     ]
