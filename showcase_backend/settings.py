@@ -44,6 +44,7 @@ class Common(Configuration):
         'corsheaders',
         'ember_drf',
         'watson',
+        'storages',
 
         # Apps
         'showcase_backend.universities',
@@ -207,4 +208,13 @@ class Production(Staging):
     """
     The in-production settings.
     """
-    pass
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+    STATIC_URL = 'https://com-showcase.s3.amazonaws.com/'
+    MEDIA_URL = STATIC_URL + '/media/'
+
+    AWS_PRELOAD_METADATA = True
+    AWS_ACCESS_KEY_ID = values.Value(environ_prefix=None)
+    AWS_SECRET_ACCESS_KEY = values.Value(environ_prefix=None)
+    AWS_STORAGE_BUCKET_NAME = values.Value(environ_prefix=None)
