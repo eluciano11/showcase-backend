@@ -5,6 +5,7 @@ from django.utils.text import slugify
 from rest_framework import serializers
 
 from .models import User
+from ..utils.exceptions import ConflictError
 
 
 class SigninSerializer(serializers.Serializer):
@@ -66,7 +67,7 @@ class SignupSerializer(serializers.ModelSerializer):
 
         if is_found:
             message = 'Email already in use'
-            raise serializers.ValidationError(message)
+            raise ConflictError(message)
 
         return value
 
