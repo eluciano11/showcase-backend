@@ -15,7 +15,7 @@ class SearchViewSet(viewsets.GenericViewSet):
     authentication_classes = ()
 
     def list(self, request, *args, **kwargs):
-        if not 'q' in self.request.QUERY_PARAMS:
+        if 'q' not in self.request.QUERY_PARAMS:
             return Response({})
         if 'models[]' in self.request.QUERY_PARAMS:
             models = self.request.QUERY_PARAMS['models[]']
@@ -30,6 +30,7 @@ class SearchViewSet(viewsets.GenericViewSet):
                 self.request.QUERY_PARAMS['q'], tuple(search_models))
         else:
             results = watson.search(self.request.QUERY_PARAMS['q'])
+            print results
         universities = []
         users = []
         projects = []

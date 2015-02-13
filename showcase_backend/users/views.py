@@ -84,5 +84,5 @@ class SpecificUserView(generics.RetrieveAPIView):
     authentication_classes = ()
     permission_classes = ()
 
-    def get_queryset(self):
+    def get_object(self):
         return get_object_or_404(User, pk=self.kwargs['id'])
