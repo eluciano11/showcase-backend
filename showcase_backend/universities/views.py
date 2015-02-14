@@ -8,4 +8,4 @@ class UniversityViewSet(ModelViewSet):
     model = University
     queryset = University.objects.all()
     serializer_class = UniversitySerializer
-    lookup_field = 'slug'
+    lookup_field = 'id'

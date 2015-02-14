@@ -14,8 +14,11 @@ class ProjectViewSet(ModelViewSet):
 
     def get_queryset(self):
         query_params = self.request.QUERY_PARAMS
-
         if query_params:
-            return Project.objects.filter(created_by=query_params['user'])
+            if 'user' in query_params:
+                return Project.objects.filter(created_by=query_params['user'])
+            elif 'university' in query_params:
+                return Project.objects.filter(
+                    university=query_params['university'])
         else:
             return Project.objects.all()
