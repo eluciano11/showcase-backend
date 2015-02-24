@@ -21,6 +21,7 @@ class Project(models.Model):
     summary = models.CharField(max_length=140)
     story = models.TextField()
     screenshot = models.FileField(upload_to='screenshot/%Y/%m/%d', blank=True)
+    cover = models.URLField()
 
     def __str__(self):
         return self.title
