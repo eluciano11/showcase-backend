@@ -1,1 +1,1 @@
-web: newrelic-admin run-program gunicorn -b "0.0.0.0:$PORT" -w 3 showcase_backend.wsgi
+web: gunicorn -b "0.0.0.0:8000" -w 3 showcase_backend.wsgi
