@@ -78,6 +78,7 @@ class SignupSerializer(serializers.ModelSerializer):
         return value
 
     def create_user(self, attrs):
+        print attrs
         email = attrs['email']
         password = attrs['password']
         first_name = attrs['first_name']
