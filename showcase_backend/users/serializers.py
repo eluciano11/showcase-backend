@@ -80,8 +80,8 @@ class SignupSerializer(serializers.ModelSerializer):
     def create_user(self, attrs):
         email = attrs['email']
         password = attrs['password']
-        first_name = attrs['firstName']
-        last_name = attrs['lastName']
+        first_name = attrs['first_name']
+        last_name = attrs['last_name']
 
         user = User.objects.create_user(
             email, first_name, last_name, password)
