@@ -1,1 +1,1 @@
-web: gunicorn -w 3 showcase_backend.wsgi
+web: gunicorn showcase_backend.wsgi --log-file -

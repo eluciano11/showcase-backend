@@ -2,10 +2,10 @@
 Django settings for showcase_backend project.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
+https://docs.djangoproject.com/en/1.7/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
+https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 import os
 import datetime
@@ -27,7 +27,7 @@ class Common(Configuration):
 
     TEMPLATE_DEBUG = values.BooleanValue(DEBUG)
 
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = ['*']
 
     # Application definition
     INSTALLED_APPS = (
@@ -179,6 +179,24 @@ class Development(Common):
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
     PROTOCOL = 'http'
+
+    DEBUG_TOOLBAR_PATCH_SETTINGS = values.BooleanValue(False)
+
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "handlers": {
+            "console": {
+                "level": "INFO",
+                "class": "logging.StreamHandler",
+            },
+        },
+        "loggers": {
+            "django": {
+                "handlers": ["console"],
+            }
+        }
+    }
 
 
 class Staging(Common):
