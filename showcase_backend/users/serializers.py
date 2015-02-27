@@ -78,7 +78,6 @@ class SignupSerializer(serializers.ModelSerializer):
         return value
 
     def create_user(self, attrs):
-        print attrs
         email = attrs['email']
         password = attrs['password']
         first_name = attrs['first_name']
@@ -213,10 +212,10 @@ class UserSettingsSerializer(serializers.ModelSerializer):
     def validate(self, data):
         user = User.objects.get(pk=self.context['request'].user.id)
 
-        if (user.first_name.lower() != data['firstName'].lower() or
-                user.last_name.lower() != data['lastName'].lower()):
+        if (user.first_name.lower() != data['first_name'].lower() or
+                user.last_name.lower() != data['last_name'].lower()):
 
-            full_name = data['firstName'] + ' ' + data['lastName']
+            full_name = data['first_name'] + ' ' + data['last_name']
             slug = slugify(full_name)
 
             unique = False
