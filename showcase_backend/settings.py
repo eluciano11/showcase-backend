@@ -203,6 +203,12 @@ class Staging(Common):
         ('HTTP_X_FORWARDED_PROTO', 'https')
     )
 
+    REST_FRAMEWORK = {
+        'DEFAULT_RENDERER_CLASSES': (
+            'ember_drf.renderers.EmberJSONRenderer',
+        )
+    }
+
 
 class Production(Staging):
     """
