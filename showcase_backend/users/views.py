@@ -27,7 +27,7 @@ class SignupView(generics.CreateAPIView):
     def post(self, request):
         serializer = self.get_serializer(data=request.DATA)
         print request.DATA
-        serializer.is_valid(raise_exception=True)
+        print serializer
         return Response(serializer.validated_data)
 
 
