@@ -17,7 +17,6 @@ django-secure==1.0.1
 django-storages==1.1.8
 django-watson==1.1.5
 djangorestframework==3.0.2
-djangorestframework-camel-case==0.2.0
 djangorestframework-jwt==1.1.1
 emberdrf==0.1.7
 gunicorn==19.1.1
