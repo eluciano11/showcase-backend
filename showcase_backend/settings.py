@@ -105,10 +105,12 @@ class Common(Configuration):
         'MAX_PAGINATE_BY': 100,
         'DEFAULT_RENDERER_CLASSES': (
             'ember_drf.renderers.EmberJSONRenderer',
+            'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
             'rest_framework.renderers.BrowsableAPIRenderer',
         ),
         'DEFAULT_PARSER_CLASSES': (
             'ember_drf.parsers.EmberJSONParser',
+            'djangorestframework_camel_case.parser.CamelCaseJSONParser',
             'rest_framework.parsers.MultiPartParser',
         ),
         'DEFAULT_AUTHENTICATION_CLASSES': (
