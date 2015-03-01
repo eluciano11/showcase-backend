@@ -42,7 +42,6 @@ class Common(Configuration):
         'rest_framework',
         'django_gravatar',
         'corsheaders',
-        'ember_drf',
         'watson',
         'storages',
 
@@ -155,8 +154,8 @@ class Common(Configuration):
     EMAIL_PORT = values.IntegerValue()
     EMAIL_USE_TLS = values.BooleanValue(False)
 
-    #CORS
-    #It's true just for development purposes. we can create the whitelist later
+    # CORS
+    # It's true just for development purposes. we can create the whitelist later
     CORS_ORIGIN_ALLOW_ALL = True
 
     APPEND_SLASH = False

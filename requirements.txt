@@ -15,6 +15,7 @@ django-gravatar==0.1.0
 django-gravatar2==1.1.4
 django-secure==1.0.1
 django-storages==1.1.8
+django-watson==1.1.5
 djangorestframework==3.0.2
 djangorestframework-jwt==1.1.1
 emberdrf==0.1.7
@@ -27,4 +28,3 @@ requests==2.5.1
 six==1.8.0
 sqlparse==0.1.13
 wsgiref==0.1.2
-git+https://github.com/etianen/django-watson
