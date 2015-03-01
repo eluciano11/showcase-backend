@@ -25,7 +25,6 @@ newrelic==2.36.0.30
 psycopg2==2.5.4
 pytz==2014.10
 requests==2.5.1
-rest-framework-ember==1.1.0
 six==1.8.0
 sqlparse==0.1.13
 wsgiref==0.1.2
